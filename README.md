@@ -68,4 +68,4 @@ Introducing an AI-powered solution that transforms the way you document code! No
 
 <img src="photos/flowchart.png" alt="Image Description">
 
-### PPT -[Link](https://docs.google.com/presentation/d/1QjwN2sjMZMjTXLlL4DY-FYB71QYu9HeE/edit?usp=sharing&ouid=105531779058336701957&rtpof=true&sd=true)
+
