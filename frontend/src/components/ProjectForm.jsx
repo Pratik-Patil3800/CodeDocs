@@ -15,7 +15,7 @@ function ProjectForm() {
   
     try {
       console.log(projectName,category,description);
-      const response = await axios.post('http://localhost:3001/api/project/createNewRepo', {projectName,description},
+      const response = await axios.post('http://localhost:3001/api/project/createNewProject', {projectName,description},
         {withCredentials: true,}
       );
       console.log(response.data);

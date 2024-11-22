@@ -24,7 +24,15 @@ const projectSchema = new Schema({
   },
   pages: [
     {
-      type: String, 
+      name: {
+        type: String,
+        required: true,
+      },
+      content: {
+        type: String,
+        required: false,
+      },
+      _id: false,
     },
   ],
 });

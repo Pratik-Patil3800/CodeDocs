@@ -18,10 +18,11 @@ function Project() {
       try {
         setShowAddForm(false); 
         
-        const response = await axios.post('http://localhost:3001/api/project/addFile', {projectId:repo_id,filePath:newStepTitle},
+        const response = await axios.post('http://localhost:3001/api/project/addPage', {projectId:repo_id,pageName:newStepTitle},
           {withCredentials: true,}
         );
-        setPages([...pages, newStepTitle]);
+        setPages([...pages, { name: newStepTitle, content: "" }]);
+        console.log(pages)
         setNewStepTitle(""); 
         
         alert('Data stored successfully!');
@@ -50,6 +51,7 @@ function Project() {
         }, {
           withCredentials: true,
         });
+        console.log(response.data.pages)
         setPages(response.data.pages);
       } catch (error) {
         setError(error.message);
@@ -64,16 +66,17 @@ function Project() {
   useEffect(() => {
     const fetchMdContent = async () => {
       if (pages.length > 0) {
-        try {
-          const response = await axios.post("http://localhost:3001/api/project/getFileContent", 
-            { projectId: repo_id, filePath: pages[currentStep - 1] },  
-            {withCredentials: true,
-          });
-          console.log(response.data.content)
-          setMdContent(response.data.content);
-        } catch (error) {
-          setError(error.message);
-        }
+        // try {
+        //   const response = await axios.post("http://localhost:3001/api/project/getFileContent", 
+        //     { projectId: repo_id, filePath: pages[currentStep - 1] },  
+        //     {withCredentials: true,
+        //   });
+        //   console.log(response.data.content)
+        //   setMdContent(response.data.content);
+        // } catch (error) {
+        //   setError(error.message);
+        // }
+        setMdContent(pages[currentStep - 1].content);
       }
     };
     fetchMdContent();
@@ -99,7 +102,7 @@ function Project() {
                 }`}
                 onClick={() => setCurrentStep(index + 1)}
               >
-                {index + 1}. {step}
+                {index + 1}. {step.name}
               </li>
             ))}
           </ul>
@@ -185,7 +188,7 @@ function Project() {
 
       <main className="flex-1 bg-slate-900 p-8">
       <h1 className="text-2xl text-green-500 font-bold mb-2">
-          {currentStep}. {pages[currentStep - 1]}
+          {currentStep}. {pages[currentStep - 1].name}
         </h1>
         
 

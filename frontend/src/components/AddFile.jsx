@@ -17,7 +17,7 @@ const AddPost = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3001/addFile", {
+      const response = await fetch("http://localhost:3001/addPage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

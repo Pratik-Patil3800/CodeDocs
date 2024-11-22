@@ -42,16 +42,17 @@ function Project() {
   useEffect(() => {
     const fetchMdContent = async () => {
       if (pages.length > 0) {
-        try {
-          const response = await axios.post("http://localhost:3001/api/project/getFileContent", 
-            { projectId: repo_id, filePath: pages[currentStep - 1] },  
-            {withCredentials: true,
-          });
-          console.log(response.data.content)
-          setMdContent(response.data.content);
-        } catch (error) {
-          setError(error.message);
-        }
+        // try {
+        //   const response = await axios.post("http://localhost:3001/api/project/getPageContent", 
+        //     { projectId: repo_id, filePath: pages[currentStep - 1] },  
+        //     {withCredentials: true,
+        //   });
+        //   console.log(response.data.content)
+        //   setMdContent(response.data.content);
+        // } catch (error) {
+        //   setError(error.message);
+        // }
+        setMdContent(pages[currentStep - 1].content);
       }
     };
     fetchMdContent();
@@ -76,7 +77,7 @@ function Project() {
                 }`}
                 onClick={() => setCurrentStep(index + 1)}
               >
-                {index + 1}. {step}
+                {index + 1}. {step.name}
               </li>
             ))}
           </ul>
